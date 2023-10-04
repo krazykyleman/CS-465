@@ -1,8 +1,12 @@
 const mongoose = require('mongoose'); //.set('debug', true);
-const Model = moongoose/model('trips');
+const Model = mongoose/model('trips');
 
 //GET: /trips - lists all the trips
 const tripsList = async (req, res) => {
+
+    console.log("Inside trips.js controller");
+    console.log(req);
+    console.log(res);
 
     Model
         .find({}) //empty filer for all
@@ -38,6 +42,10 @@ const tripsList = async (req, res) => {
 
 // GET: /trips/:tripCode - returns a single trip
 const tripsFindCode = async (req, res) => {
+
+    console.log("Inside trips.js controller");
+    console.log(req);
+    console.log(res);
 
     Model
         .find({ 'code': req.params.tripCode })

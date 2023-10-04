@@ -33,6 +33,13 @@ app.use('/users', usersRouter);
 app.use('/travel', travelRouter);
 app.use('/api', apiRouter);
 
+app.use('/api', (req, res, next) => {
+  console.log("Inside app.js /api route");
+  console.log(req);
+  console.log(res);
+  next();
+}, apiRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
