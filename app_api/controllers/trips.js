@@ -1,90 +1,38 @@
-const mongoose = require('mongoose'); //.set('debug', true);
-const Model = mongoose/model('trips');
+const mongoose = require('mongoose');
+const trips = mongoose.model('trips');
 
-//GET: /trips - lists all the trips
-const tripsList = async (req, res) => {
+const fetchTrips = async (req, res) => {
 
-    console.log("Inside trips.js controller");
-    console.log(req);
-    console.log(res);
+    try {
 
-    Model
-        .find({}) //empty filer for all
-        .exec((err, trips) => {
+        if (!!req.params.tripCode) {
 
-            if (!trips) {
+            const result = await trips.findOne({ 'code': req.params.tripCode });
+            if (!!result) {
 
-                return res
-                    .status(404)
-                    .json({"message": "trips not found" });
+                res.json(result);
+
+            } else {
+
+                res.status(404).send('No trip found for code $(req.params.tripCode}');
 
             }
 
-            else if (err) {
+            return;
 
-                return res
-                    .status(404)
-                    .json(err);
+        }
+        res.json(await trips.find({}));
 
-            }
+    } catch (e) {
 
-            else {
+        res.status(500).json(e);
 
-                return res
-                    .status(200)
-                    .json(trips);
-
-            }
-
-        });
-
-};
-
-// GET: /trips/:tripCode - returns a single trip
-const tripsFindCode = async (req, res) => {
-
-    console.log("Inside trips.js controller");
-    console.log(req);
-    console.log(res);
-
-    Model
-        .find({ 'code': req.params.tripCode })
-        .exec((err, trip) => {
-
-            if (!trip) {
-
-                return res
-
-                    .status(404)
-                    .json({ "message": "trip not found" });
-
-            }
-
-            else if (err) {
-
-                return res
-
-                    .status(404)
-                    .json(err);
-
-            }
-
-            else {
-
-                return res
-
-                .status(200)
-                .json(trip);
-
-            }
-
-        });
+    }
 
 };
 
 module.exports = {
 
-    tripsList,
-    tripsFindCode
+    fetchTrips
 
 };
