@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import * as tripsData from '../trips';
+import { Component, OnInit } from '@angular/core';
+import { Trip } from '../models/trip';
+import { TripsService } from '../services/trips.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trip-listing',
@@ -7,8 +9,24 @@ import * as tripsData from '../trips';
   styleUrls: ['./trip-listing.component.css']
 })
 
-export class TripListingComponent {
+export class TripListingComponent implements OnInit {
 
-  trips = new Array<any>(...tripsData.default);
+  trips: Trip[] = [];
+
+  constructor(private tripsServiuce: TripsService, private router: Router) { }
+
+  ngOnInit(): void {
+
+    this.tripsServiuce.getTrips()
+      .subscribe({
+        next: results => this.trips.push(...results),
+        error: err => console.error(err)
+      });
+
+  }
+
+  addTrip() {
+    this.router.navigate(['add-trip']);
+  }
 
 }

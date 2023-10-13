@@ -15,6 +15,11 @@ var apiRouter = require('./app_api/routes/index');
 
 
 var app = express();
+var cors = require('cors');
+var corsOptions = {
+  origin:'http://localhost:4200',
+  allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
@@ -29,9 +34,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/travel', travelRouter);
-app.use('/api', apiRouter);
+app.use('/contact', (req, res) => res.render('contact', {contactSelected: req.path == '/contact'}));
+app.use('/rooms', (req, res) => res.render('rooms', {roomsSelected: req.path =='/rooms'}));
+app.use('/meals', (req, res) => res.render('meals', {mealsSelected: req.path =='/meals'}));
+app.use('/news', (req, res) => res.render('news', {newsSelected: req.path =='/news'}));
+app.use('/about', (req, res) => res.render('about', {aboutSelected: req.path =='/about'}));
+app.use('/travel', travel);
+app.use('/api', cors(corsOptions), apiRouter);
 
 app.use('/api', (req, res, next) => {
   console.log("Inside app.js /api route");

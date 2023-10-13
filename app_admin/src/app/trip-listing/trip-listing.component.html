@@ -1,12 +1,11 @@
+<div class="row mb-4">
+    <div class="col">
+        <button (click)="addTrip()" type="button" class="btn btn-primary">Add Trip</button>
+    </div>
+</div>
+
 <div class="row g-4">
-    <div class="cold-md-3" *ngFor="let trip of trips">
-        <div class="card">
-            <div class="card-header">{{ trip.name }}</div>
-            <img src="assets/images/{{ trip.image }}" alt="trip thumbnail" />
-            <div class="card-body">
-                <h6 class="card-substitle mb-2 text-muted">{{ trip.resort }}</h6>
-                <p class="card-subtitle mt-3 mb-3 text-muted">{{ trip.length }} only {{ trip.perPerson | currency:'USD' }}</p>
-            </div>
-        </div>
+    <div class="col-md-3" *ngFor="let trip of trips">
+        <app-trip-card [trip]="trip"></app-trip-card>
     </div>
 </div>
