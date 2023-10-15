@@ -1,24 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
-var hbs = require('hbs');
+const hbs = require('hbs');
 
 require('./app_api/database/db')
 
-var indexRouter = require('./app_server/routes/index');
-var usersRouter = require('./app_server/routes/users');
-var travelRouter = require('./app_server/routes/travel');
-var apiRouter = require('./app_api/routes/index');
+const usersRouter = require('./app_server/routes/users');
+const travelRouter = require('./app_server/routes/travel');
 
 
-var app = express();
-var cors = require('cors');
-var corsOptions = {
+
+const app = express();
+const cors = require('cors');
+const corsOptions = {
+
   origin:'http://localhost:4200',
   allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept', 'Authorization'],
+
 }
 
 // view engine setup
@@ -33,21 +34,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/contact', (req, res) => res.render('contact', {contactSelected: req.path == '/contact'}));
-app.use('/rooms', (req, res) => res.render('rooms', {roomsSelected: req.path =='/rooms'}));
-app.use('/meals', (req, res) => res.render('meals', {mealsSelected: req.path =='/meals'}));
-app.use('/news', (req, res) => res.render('news', {newsSelected: req.path =='/news'}));
-app.use('/about', (req, res) => res.render('about', {aboutSelected: req.path =='/about'}));
-app.use('/travel', travel);
-app.use('/api', cors(corsOptions), apiRouter);
+const indexRouter = require('./app_server/routes/index');
+const apiRouter = require('./app_api/routes/index');
 
-app.use('/api', (req, res, next) => {
-  console.log("Inside app.js /api route");
-  console.log(req);
-  console.log(res);
-  next();
-}, apiRouter);
+app.use('/', indexRouter);
+app.get('/contact', (req, res) => res.render('contact', {contactSelected: req.path == '/contact'}));
+app.get('/rooms', (req, res) => res.render('rooms', {roomsSelected: req.path =='/rooms'}));
+app.get('/meals', (req, res) => res.render('meals', {mealsSelected: req.path == '/meals'}));
+app.get('/news', (req, res) => res.render('news', {newsSelected: req.path == '/news'}));
+app.get('/about', (req, res) => res.render('about', {aboutSelected: req.path == '/about'}));
+app.get('/travel', travel);
+app.use('/api', cors(corsOptions), apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

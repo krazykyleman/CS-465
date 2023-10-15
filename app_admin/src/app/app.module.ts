@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TripListingComponent } from './trip-listing/trip-listing.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
-import { HttpClientModule } from '@angular/common/http';
-import { TripsService } from './services/trips.service';
-import { AddTripComponent } from './add-trip/add-trip.component';
+import { HttpClientModule } from '@angular/common/http'; // <-- import HttpClientModule
+import { TripsService } from'./services/trips.service';
+import { AddTripComponent } from './add-trip/add-trip.component'; // <-- import TripsService
 
 @NgModule({
   declarations: [
@@ -19,9 +19,9 @@ import { AddTripComponent } from './add-trip/add-trip.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule // <-- add HttpClientModule to imports
   ],
-  providers: [TripsService],
+  providers: [TripsService], // <-- add TripsService to providers
   bootstrap: [AppComponent]
 })
 export class AppModule { }

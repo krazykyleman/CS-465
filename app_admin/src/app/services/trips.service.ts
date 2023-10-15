@@ -14,7 +14,7 @@ export class TripsService {
 
   public getTrips(): Observable<Trip[]> {
 
-    return this.http.get<Trip[]>('${this.API_BASE_URL}/trips');
+    return this.http.get<Trip[]>(`${this.API_BASE_URL}/trips`);
 
   }
 
