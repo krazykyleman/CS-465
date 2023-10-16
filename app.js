@@ -8,6 +8,7 @@ const hbs = require('hbs');
 
 require('./app_api/database/db')
 
+
 const usersRouter = require('./app_server/routes/users');
 const travelRouter = require('./app_server/routes/travel');
 
@@ -38,6 +39,7 @@ const indexRouter = require('./app_server/routes/index');
 const apiRouter = require('./app_api/routes/index');
 
 app.use('/', indexRouter);
+
 app.get('/contact', (req, res) => res.render('contact', {contactSelected: req.path == '/contact'}));
 app.get('/rooms', (req, res) => res.render('rooms', {roomsSelected: req.path =='/rooms'}));
 app.get('/meals', (req, res) => res.render('meals', {mealsSelected: req.path == '/meals'}));
