@@ -1,0 +1,64 @@
+<h2>Add Trip</h2>
+<form [formGroup]="addForm" (ngSubmit)="addTrip()">
+    <div class="row mb-3">
+        <label for="txtCode" class="col-sm-2 col-form-label">Code</label>
+        <div class="col-sm-4">
+            <input type="text" formControlName="code" name="txtCode" id="txtCode" class="form-control" required />
+            <div *ngIf="submitted && f['code'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="txtDestination" class="col-sm-2 col-form-label">Destination</label>
+        <div class="col-sm-4">
+            <input type="text" formControlName="destination" name="txtDestination" id="txtDestination" class="form-control"/>
+            <div *ngIf="submitted && f['destination'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>    
+    <div class="row mb-3">
+        <label for="txtDuration" class="col-sm-2 col-form-label">Duration</label>
+        <div class="col-sm-4">
+            <input type="number" formControlName="duration" name="txtDuration" id="txtDuration" class="form-control"/>
+            <div *ngIf="submitted && f['duration'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>    
+    <div class="row mb-3">
+        <label for="txtStart" class="col-sm-2 col-form-label">Start</label>
+        <div class="col-sm-4">
+            <input type="date" [value]="f['start'].value | date: 'yyyy-MM-dd'" formControlName="start" name="txtStart" id="txtStart" class="form-control"/>
+            <div *ngIf="submitted && f['start'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <label for="txtCost" class="col-sm-2 col-form-label">Cost</label>
+        <div class="col-sm-4">
+            <input type="number" formControlName="cost" name="txtCost" id="txtCost" class="form-control"/>
+            <div *ngIf="submitted && f['cost'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>    
+    <div class="row mb-3">
+        <label for="txtTransport" class="col-sm-2 col-form-label">Transport</label>
+        <div class="col-sm-4">
+            <input type="text" formControlName="transport" name="txtTransport" id="txtTransport" class="form-control"/>
+            <div *ngIf="submitted && f['transport'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>    
+    <div class="row mb-3">
+        <label for="txtNotes" class="col-sm-2 col-form-label">Notes</label>
+        <div class="col-sm-4">
+            <textarea formControlName="notes" name="txtNotes" id="txtNotes" class="form-control" rows="3"></textarea>
+            <div *ngIf="submitted && f['notes'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>       
+    <div class="row mb-3">
+        <label for="txtDescription" class="col-sm-2 col-form-label">Description</label>
+        <div class="col-sm-4">
+            <textarea formControlName="description" name="txtDescription" id="txtDescription" class="form-control" rows="3"></textarea>
+            <div *ngIf="submitted && f['description'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col-sm-6 text-end">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </div>
+</form>

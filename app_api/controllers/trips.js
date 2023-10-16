@@ -3,29 +3,49 @@ const trips = mongoose.model('trips');
 
 const fetchTrips = async (req, res) => {
 
-    try {
+    if (!!req.params.tripCode) {
 
-        if (!!req.params.tripCode) {
+        try {
 
-            const result = await trips.findOne({ 'code': req.params.tripCode });
-            if (!!result) {
+            res.json(await trips.findOne({ 'code': req.params.tripCode }));
 
-                res.json(result);
+        } catch (e) {
 
-            } else {
-
-                res.status(404).send('No trip found for code $(req.params.tripCode}');
-
-            }
-
-            return;
+            res.status(404).send('No trip found for code ${req.params.tripCode}');
 
         }
-        res.json(await trips.find({}));
 
-    } catch (e) {
+        return;
 
-        res.status(500).json(e);
+    }
+
+    res.json(await trips.find({}));
+};
+
+const addTrip = async (req, res) => {
+
+    const newTrip = req.body;
+
+    if(!newTrip) {
+
+        // 400 BAD REQUEST error because no Trip was sent
+        res.status(400).send('No trip record found in body of request');
+
+        return;
+
+    }
+
+    try {
+
+        const savedTrip = await trips.create(newTrip);
+
+        //201 CREATED response with the trip -- we send it back because it'll have the MongoDB _id now
+        res.status(201).json(savedTrip);
+
+    } catch(e) {
+
+        //400 BAD REQUEST because we failed to create the trip
+        res.status(400).json(e);
 
     }
 
@@ -33,6 +53,7 @@ const fetchTrips = async (req, res) => {
 
 module.exports = {
 
-    fetchTrips
+    fetchTrips,
+    addTrip
 
 };

@@ -1,5 +1,5 @@
-{
-    "1": {
+[
+    {
 
         "code": "GALR210214",
         "name": "Gale Reef",
@@ -12,7 +12,7 @@
    
     },
 
-    "2": {
+    {
         "code": "DAWR210315",
         "name": "Dawson's Reef",
         "length": "4 nights / 5 days",
@@ -24,7 +24,7 @@
     
     },
 
-    "3": {
+    {
 
         "code": "CLAR210621",
         "name": "Claire's Reef",
@@ -37,4 +37,4 @@
     
     }
 
-}
+]
