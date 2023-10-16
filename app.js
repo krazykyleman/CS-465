@@ -43,7 +43,7 @@ app.get('/rooms', (req, res) => res.render('rooms', {roomsSelected: req.path =='
 app.get('/meals', (req, res) => res.render('meals', {mealsSelected: req.path == '/meals'}));
 app.get('/news', (req, res) => res.render('news', {newsSelected: req.path == '/news'}));
 app.get('/about', (req, res) => res.render('about', {aboutSelected: req.path == '/about'}));
-app.get('/travel', travel);
+app.get('/travel', travelRouter);
 app.use('/api', cors(corsOptions), apiRouter);
 
 // catch 404 and forward to error handler

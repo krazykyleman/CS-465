@@ -8,6 +8,7 @@ import { TripCardComponent } from './trip-card/trip-card.component';
 import { HttpClientModule } from '@angular/common/http'; // <-- import HttpClientModule
 import { TripsService } from'./services/trips.service';
 import { AddTripComponent } from './add-trip/add-trip.component'; // <-- import TripsService
+import { ReactiveFormsModule } from '@angular/forms'; // <-- import ReactiveFormsModule
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AddTripComponent } from './add-trip/add-trip.component'; // <-- import 
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule // <-- add HttpClientModule to imports
+    HttpClientModule, // <-- add HttpClientModule to imports
+    ReactiveFormsModule // <-- add ReactiveFormsModule to imports
   ],
   providers: [TripsService], // <-- add TripsService to providers
   bootstrap: [AppComponent]
