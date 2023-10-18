@@ -14,14 +14,12 @@
             <div *ngIf="submitted && f['name'].errors?.['required']" class="text-danger">Oops</div>
         </div>
     </div>
-    </div>
     <div class="row mb-3">
         <label for="txtLength" class="col-sm-2 col-form-label">Length</label>
         <div class="col-sm-4">
             <input type="text" formControlName="name" name="txtName" id="txtName" class="form-control" required />
             <div *ngIf="submitted && f['name'].errors?.['required']" class="text-danger">Oops</div>
         </div>
-    </div>
     </div>
     <div class="row mb-3">
         <label for="txtStart" class="col-sm-2 col-form-label">Start</label>
@@ -30,7 +28,6 @@
                 id="txtStart" class="form-control" />
             <div *ngIf="submitted && f['start'].errors?.'required']" class="text-danger">Oops</div>
         </div>
-    </div>
     </div>
     <div class="row mb-3">
         <label for="txtResort" class="col-sm-2 col-form-label">Resort</label>
@@ -51,7 +48,6 @@
         <div class="col-sm-4">
             <input type="date" [value]="f['start'].errors?.['required']" class="text-danger">Oops
         </div>
-    </div>
     </div>
     <div class="row mb-3">
         <label for="txtDescription" class="col-sm-2 col-form-label">Description</label>
