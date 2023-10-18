@@ -13,7 +13,6 @@ export class TripsService {
   constructor(private http: HttpClient) { }
 
   public getTrips(): Observable<Trip[]> {
-
     return this.http.get<Trip[]>(`${this.API_BASE_URL}/trips`);
 
   }
