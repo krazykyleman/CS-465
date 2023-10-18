@@ -5,10 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TripListingComponent } from './trip-listing/trip-listing.component';
 import { TripCardComponent } from './trip-card/trip-card.component';
-import { HttpClientModule } from '@angular/common/http'; // <-- import HttpClientModule
-import { TripsService } from'./services/trips.service';
-import { AddTripComponent } from './add-trip/add-trip.component'; // <-- import TripsService
-import { ReactiveFormsModule } from '@angular/forms'; // <-- import ReactiveFormsModule
+import { HttpClientModule } from '@angular/common/http';
+import { TripsService } from './services/trips.service';
+import { AddTripComponent } from './add-trip/add-trip.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,10 +20,10 @@ import { ReactiveFormsModule } from '@angular/forms'; // <-- import ReactiveForm
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule, // <-- add HttpClientModule to imports
-    ReactiveFormsModule // <-- add ReactiveFormsModule to imports
+    HttpClientModule,
+    ReactiveFormsModule
   ],
-  providers: [TripsService], // <-- add TripsService to providers
+  providers: [TripsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
