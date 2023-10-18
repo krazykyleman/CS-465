@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 require('./app_api/models/db');
 
+
 const usersRouter = require('./app_server/routes/users');
 const travelRouter = require('./app_server/routes/travel')
 
@@ -35,12 +36,14 @@ const indexRouter = require('./app_server/routes/index');
 const apiRouter = require('./app_api/routes/index');
 
 app.use('/', indexRouter);
+
 app.use('/contact', (req, res) => res.render('contact',{contactSelected: req.path == '/contact'}));
 app.use('/rooms', (req, res) => res.render('rooms',{roomsSelected: req.path == '/rooms'}));
 app.use('/meals', (req, res) => res.render('meals',{mealsSelected: req.path == '/meals'}));
 app.get('/news', (req, res) => res.render('news',{newsSelected: req.path == '/news'}));
 app.use('/about', (req, res) => res.render('about',{aboutSelected: req.path == '/about'}));
 app.use('/travel', travelRouter);
+
 app.use('/api', cors(corsOptions), apiRouter);
 
 // catch 404 and forward to error handler
