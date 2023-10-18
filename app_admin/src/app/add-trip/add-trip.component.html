@@ -44,9 +44,10 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label for="txtImage" class="col-sm-2 col-form-label">Image</label>
+        <label for="txtperPerson" class="col-sm-2 col-form-label">Per Person</label>
         <div class="col-sm-4">
-            <input type="date" [value]="f['start'].errors?.['required']" class="text-danger">Oops
+            <input type="text" formControlName="name" name="txtName" id="txtName" class="form-control" required />
+            <div *ngIf="submitted && f['name'].errors?.['required']" class="text-danger">Oops</div>
         </div>
     </div>
     <div class="row mb-3">
