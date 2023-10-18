@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { TripsService } from '../services/trips.service';
 
 @Component({
   selector: 'app-add-trip',
@@ -6,5 +9,32 @@ import { Component } from '@angular/core';
   styleUrls: ['./add-trip.component.css']
 })
 export class AddTripComponent {
+
+  addForm: FormGroup;
+  submitted = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private tripsService: TripsService
+  ) {
+    this.addForm = this.formBuilder.group({
+      _id: [],
+      code: ['', Validators.required],
+      name: ['', Validators.required],
+      length: ['', Validators.required],
+      start: ['', Validators.required],
+      resort: ['', Validators.required],
+      perPerson: ['', Validators.required],
+      image: ['', Validators.required],
+      description: ['', Validators.required]
+    });
+  }
+
+  addTrip() {
+    console.log(this.addForm.value)
+  }
+
+  get f() { return this.addForm.controls; }
 
 }
