@@ -13,7 +13,8 @@ const fetchTrips = async (req, res) => {
     res.json(await trips.find({}));
 };
 
-const addTrip = async (reqq, res) => {
+const addTrip = async (req, res) => {
+
     const newTrip = req.body;
 
     if (!newTrip) {
@@ -34,7 +35,28 @@ const addTrip = async (reqq, res) => {
 
 };
 
+const updateTrip = async (req, res) => {
+    const tripCode = req.params.tripCode;
+    let trip = req.body;
+
+    trip = Object.assign(trip, { tripCode });
+
+    try {
+        const updatedTrip = await trips.findOneAndUpdate({ 'code': tripCode }, trip, { new: true });
+
+        if (updatedTrip == null) {
+            res.status(404).send({ message: `No trip was found for code: ${tripCode}` });
+            return;
+        }
+
+        res.status(200).json(updatedTrip);
+    } catch (e) {
+        res.status(500).json(e);
+    }
+};
+
 module.exports = {
     fetchTrips,
-    addTrip
+    addTrip,
+    updateTrip
 };

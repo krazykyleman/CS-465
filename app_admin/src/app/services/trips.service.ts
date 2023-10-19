@@ -17,4 +17,15 @@ export class TripsService {
 
   }
 
+  public addTrip(trip: Trip): Observable<Trip> {
+    return this.http.post<Trip>(`${this.API_BASE_URL}/trips`, trip);
+  }
+
+  public getTrip(code: string): Observable<Trip> {
+    return this.http.get<Trip>(`${this.API_BASE_URL}/trips/${code}`);
+  }
+
+  public updateTrip(code: string, trip: Trip): Observable<Trip> {
+    return this.http.put<Trip>(`${this.API_BASE_URL}/trips/${code}`, trip);
+  }
 }
