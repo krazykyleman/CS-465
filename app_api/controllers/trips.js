@@ -14,6 +14,7 @@ const fetchTrips = async (req, res) => {
 };
 
 const addTrip = async (req, res) => {
+
     const newTrip = req.body;
 
     if (!newTrip) {

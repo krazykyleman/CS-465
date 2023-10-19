@@ -28,5 +28,4 @@ export class TripsService {
   public updateTrip(code: string, trip: Trip): Observable<Trip> {
     return this.http.put<Trip>(`${this.API_BASE_URL}/trips/${code}`, trip);
   }
-
 }
