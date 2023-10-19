@@ -24,7 +24,7 @@
     <div class="row mb-3"> <!-- Start -->
         <label for="txtStart" class="col-sm-2 col-form-label">Start</label>
         <div class="col-sm-4">
-            <input type="date" [value]="f['start'].value | date: 'yyy-MM-dd'" formControlName="start" name="txtStart"
+            <input type="date" [value]="f['start'].value | date: 'yyyy-MM-dd'" formControlName="start" name="txtStart"
                 id="txtStart" class="form-control" />
             <div *ngIf="submitted && f['start'].errors?.['required']" class="text-danger">Oops</div>
         </div>
@@ -44,11 +44,19 @@
             <div *ngIf="submitted && f['perPerson'].errors?.['required']" class="text-danger">Oops</div>
         </div>
     </div>
+    <div class="row mb-3"> <!-- Image -->
+        <label for="txtImage" class="col-sm-2 col-form-label">Image</label>
+        <div class="col-sm-4">
+            <input type="text" formControlName="Image" name="txtImage" id="txtImage" class="form-control" required />
+            <div *ngIf="submitted && f['Image'].errors?.['required']" class="text-danger">Oops</div>
+        </div>
+    </div>
     <div class="row mb-3"> <!-- Description -->
         <label for="txtDescription" class="col-sm-2 col-form-label">Description</label>
         <div class="col-sm-4">
             <textarea formControlName="description" name="txtDescription" id="txtDescription" class="form-control"
                 rows="3"></textarea>
+            <div *ngIf="submitted && f['description'].errors?.['required']" class="text-danger">Oops</div>
         </div>
     </div>
     <div class="row mb-3"> <!-- Save Button -->
