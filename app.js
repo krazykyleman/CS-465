@@ -4,10 +4,10 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
-require('./app_api/models/db');
+require('./app_server/models/db');
+require('./app_api/config/passport');
 
 const usersRouter = require('./app_server/routes/users');
-const travelRouter = require('./app_server/routes/travel')
 
 const hbs = require('hbs');
 
@@ -33,23 +33,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const indexRouter = require('./app_server/routes/index');
 const apiRouter = require('./app_api/routes/index');
+const travel = require('./app_server/routes/travel')
 
 app.use('/', indexRouter);
-app.use('/contact', (req, res) => res.render('contact',{contactSelected: req.path == '/contact'}));
-app.use('/rooms', (req, res) => res.render('rooms',{roomsSelected: req.path == '/rooms'}));
-app.use('/meals', (req, res) => res.render('meals',{mealsSelected: req.path == '/meals'}));
-app.get('/news', (req, res) => res.render('news',{newsSelected: req.path == '/news'}));
-app.use('/about', (req, res) => res.render('about',{aboutSelected: req.path == '/about'}));
-app.use('/travel', travelRouter);
+app.use('/contact', (req, res) => res.render('contact', { contactSelected: req.path == '/contact' }));
+app.use('/rooms', (req, res) => res.render('rooms', { roomsSelected: req.path == '/rooms' }));
+app.use('/meals', (req, res) => res.render('meals', { mealsSelected: req.path == '/meals' }));
+app.get('/news', (req, res) => res.render('news', { newsSelected: req.path == '/news' }));
+app.use('/about', (req, res) => res.render('about', { aboutSelected: req.path == '/about' }));
+app.use('/travel', travel);
 app.use('/api', cors(corsOptions), apiRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
