@@ -1,14 +1,33 @@
-Architecture
+# Travlr Getaways
 
-Compare and contrast the types of frontend development you used in your full stack project, including Express HTML, JavaScript, and the single-page application (SPA).
-Why did the backend use a NoSQL MongoDB database?
-Functionality
+## Description
 
-How is JSON different from Javascript and how does JSON tie together the frontend and backend development pieces?
-Provide instances in the full stack process when you refactored code to improve functionality and efficiencies, and name the benefits that come from reusable user interface (UI) components.
-Testing
+Travlr Getaways is a web application for showcasing travel destinations. It includes:
 
-Methods for request and retrieval necessitate various types of API testing of endpoints, in addition to the difficulties of testing with added layers of security. Explain your understanding of methods, endpoints, and security in a full stack application.
-Reflection
+*   **Public Website:**  A website for users to browse travel packages. Built with server-side rendering using Handlebars.
+*   **Admin Dashboard (Conceptual):** An intended Angular-based admin panel for managing content.
+*   **Backend API:**  A REST API built with Node.js and Express.js for managing trip data and user authentication.
 
-How has this course helped you in reaching your professional goals? What skills have you learned, developed, or mastered in this course to help you become a more marketable candidate in your career field?
+## Technologies Used
+
+*   **Frontend (Public Website):** HTML, CSS, JavaScript, Handlebars
+*   **Frontend (Admin Dashboard):** Angular (Conceptual)
+*   **Backend & API:** Node.js, Express.js, MongoDB, Mongoose
+*   **Authentication:** Passport.js, JWT
+
+## Setup Instructions
+
+1.  **Prerequisites:** Node.js, MongoDB
+2.  **Clone repo:** `git clone https://github.com/krazykyleman/TravlrGetaways.git`
+3.  **Install dependencies:** `npm install`
+4.  **Run:** `npm start`
+5.  **Website:** `http://localhost:3000`
+
+## Usage
+
+*   **Public Website:** Browse travel destinations on the homepage and travel pages.
+*   **Admin Dashboard:** (Conceptual - may not be fully functional)
+*   **API:**  API endpoints are available under `/api` (refer to backend code for details).
+
+## Author
+Kyle B. Wucik
